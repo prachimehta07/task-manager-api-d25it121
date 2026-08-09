@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   getAllTasks,
+  getTaskById,
   createTask,
   updateTask,
   deleteTask,
@@ -11,6 +12,7 @@ const {
 const validateTaskId = require("../middleware/validateTaskId");
 
 router.get("/", getAllTasks);
+router.get("/:id", validateTaskId, getTaskById);
 router.post("/", createTask);
 router.put("/:id", validateTaskId, updateTask);
 router.delete("/:id", validateTaskId, deleteTask);
