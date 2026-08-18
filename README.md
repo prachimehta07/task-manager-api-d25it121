@@ -53,3 +53,8 @@ npm install
 Copy-Item .env.example .env   # PowerShell — then fill in your own MONGO_URI
 npm run dev
 ```
+
+## Practical 6 — CORS for Frontend Integration
+
+- Enabled `cors` middleware to allow requests from the React dev server (`localhost:5173`)
+- Connected to and tested against the `portfolio-d25it121` frontend's Tasks page
