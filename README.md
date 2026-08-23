@@ -58,3 +58,12 @@ npm run dev
 
 - Enabled `cors` middleware to allow requests from the React dev server (`localhost:5173`)
 - Connected to and tested against the `portfolio-d25it121` frontend's Tasks page
+
+## Practical 7 — JWT Authentication
+
+- `POST /auth/register` — creates a user, password hashed with bcrypt
+- `POST /auth/login` — verifies credentials, returns a JWT (1 hour expiry)
+- `GET /auth/me` — returns the logged-in user's details (protected)
+- All `/tasks` routes now require `Authorization: Bearer <token>`
+- Server-side validation rejects task creation requests missing a title
+- `JWT_SECRET` stored in `.env`, never committed
