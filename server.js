@@ -8,6 +8,7 @@ const validateContentType = require("./middleware/validateContentType");
 const notFound = require("./middleware/notFound");
 const errorHandler = require("./middleware/errorHandler");
 const taskRoutes = require("./routes/taskRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(logger);
 app.use(validateContentType);
 
+app.use("/auth", authRoutes);
 app.use("/tasks", taskRoutes);
 
 app.use(notFound);
