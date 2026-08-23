@@ -20,6 +20,10 @@ async function register(req, res, next) {
 
     res.status(201).json({ id: user._id, email: user.email });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      const messages = Object.values(err.errors).map((e) => e.message);
+      return res.status(400).json({ error: messages.join(", ") });
+    }
     next(err);
   }
 }
