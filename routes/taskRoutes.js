@@ -7,6 +7,7 @@ const {
   createTask,
   updateTask,
   deleteTask,
+  getCacheStats,
 } = require("../controllers/taskController");
 
 const validateTaskId = require("../middleware/validateTaskId");
@@ -16,6 +17,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 router.use(authMiddleware);
 
 router.get("/", getAllTasks);
+router.get("/cache/stats", getCacheStats);
 router.get("/:id", validateTaskId, getTaskById);
 router.post("/", validateTask, createTask);
 router.put("/:id", validateTaskId, updateTask);
