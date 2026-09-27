@@ -67,3 +67,19 @@ npm run dev
 - All `/tasks` routes now require `Authorization: Bearer <token>`
 - Server-side validation rejects task creation requests missing a title
 - `JWT_SECRET` stored in `.env`, never committed
+
+## Practical 9 — In-Memory Caching with node-cache
+
+- `GET /tasks` and `GET /tasks/:id` responses cached per-user (60s TTL)
+- Cache key includes the authenticated user's ID to prevent cross-user data leakage
+- Cache invalidated on every POST/PUT/DELETE for the affected user
+- `GET /tasks/cache/stats` exposes cumulative hit/miss counts
+- Known limitation: cache is in-memory and resets on server restart; not suitable for multi-instance deployment
+
+### Response Time Comparison (GET /tasks)
+
+| Reading | Uncached | Cached |
+|---|---|---|
+| 1 | ___ ms | ___ ms (miss) |
+| 2 | ___ ms | ___ ms (hit) |
+| 3 | ___ ms | ___ ms (hit) |
