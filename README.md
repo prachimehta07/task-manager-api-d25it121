@@ -83,3 +83,14 @@ npm run dev
 | 1 | ___ ms | ___ ms (miss) |
 | 2 | ___ ms | ___ ms (hit) |
 | 3 | ___ ms | ___ ms (hit) |
+
+
+## Practical 10 — Event-Driven Notifications
+
+- Created a shared EventEmitter instance in `events/taskEvents.js`.
+- Registered task-created, task-deleted, and error listeners in `events/listeners.js`.
+- Registered listeners once at startup in `server.js`.
+- Emitted task-created after successfully creating a task and sending the API response.
+- Emitted task-deleted after successfully deleting a task.
+- Simulated a two-second notification delay and compared it with a synchronous delay.
+- Tested error forwarding through the error listener.
