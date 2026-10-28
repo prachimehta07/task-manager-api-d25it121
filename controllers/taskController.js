@@ -1,3 +1,4 @@
+const taskEvents = require("../events/taskEvents");
 const Task = require("../models/Task");
 const cache = require("../config/cache");
 
@@ -59,7 +60,9 @@ async function createTask(req, res, next) {
   try {
     const task = await Task.create({ ...req.body, user: req.user.id });
     cache.del(allTasksKey(req.user.id));
+    console.log(`[API] Response sent at ${new Date().toISOString()}`);
     res.status(201).json(task);
+    taskEvents.emit("task-created", task);
   } catch (err) {
     if (err.name === "ValidationError") {
       const messages = Object.values(err.errors).map((e) => e.message);
@@ -106,6 +109,7 @@ async function deleteTask(req, res, next) {
     cache.del(singleTaskKey(req.user.id, req.params.id));
 
     res.status(200).json({ message: "Task deleted" });
+    taskEvents.emit("task-deleted", task);
   } catch (err) {
     next(err);
   }

@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-
+require("./events/listeners");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const logger = require("./middleware/logger");
