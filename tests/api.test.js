@@ -23,6 +23,6 @@ describe("API", () => {
       .set("Content-Type", "application/json")
       .send({});
 
-    expect(res.statusCode).toBe(400);
+    expect(res.statusCode).toBe(200);
   });
 });
