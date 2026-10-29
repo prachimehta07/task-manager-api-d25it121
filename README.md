@@ -94,3 +94,17 @@ npm run dev
 - Emitted task-deleted after successfully deleting a task.
 - Simulated a two-second notification delay and compared it with a synchronous delay.
 - Tested error forwarding through the error listener.
+
+## Practical 11 — Docker and Docker Compose
+
+- `Dockerfile` for the backend; multi-stage `Dockerfile` (Node build, nginx serve) for the frontend in `portfolio-d25it121/frontend`
+- `docker-compose.yml` orchestrates frontend (5173), backend (5000), and MongoDB (27017) on a shared `app-network`
+- MongoDB data persists in the named volume `mongo-data`
+- `.dockerignore` excludes `node_modules` and `.env`
+
+### Run the full stack
+Clone both repos side by side (`task-manager-api-d25it121` and `portfolio-d25it121`), create `.env` from `.env.example` with a `JWT_SECRET`, then:
+```bash
+docker compose up --build
+```
+Open http://localhost:5173
