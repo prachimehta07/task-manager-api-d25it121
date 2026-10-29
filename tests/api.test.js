@@ -1,4 +1,3 @@
-
 const request = require("supertest");
 const app = require("../server");
 
@@ -24,5 +23,14 @@ describe("API", () => {
       .send({});
 
     expect(res.statusCode).toBe(400);
+  });
+
+  test("POST /ai/subtasks without a token returns 401", async () => {
+    const res = await request(app)
+      .post("/ai/subtasks")
+      .set("Content-Type", "application/json")
+      .send({ title: "Learn Transformers" });
+
+    expect(res.statusCode).toBe(401);
   });
 });
