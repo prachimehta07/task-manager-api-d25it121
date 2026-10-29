@@ -1,3 +1,6 @@
+
+![CI Pipeline](https://github.com/prachimehta07/task-manager-api-d25it121/actions/workflows/ci.yml/badge.svg)
+
 # Task Manager API
 
 A RESTful backend for a task management system, built with Node.js and Express, as part of Advanced Web Development Frameworks (ITUE301) practical coursework.
@@ -108,3 +111,13 @@ Clone both repos side by side (`task-manager-api-d25it121` and `portfolio-d25it1
 docker compose up --build
 ```
 Open http://localhost:5173
+
+## Practical 12 — CI Pipeline with GitHub Actions
+
+- Workflow `.github/workflows/ci.yml` runs on every push to `main`: checkout, setup Node 22, `npm install`, `npm test`
+- 3 Jest + Supertest tests that don't need a database: unauthenticated `/tasks` → 401, unknown route → 404, empty login body → 400
+- `server.js` exports `app` and only starts listening when run directly, so tests import it without connecting to MongoDB
+
+### Pipeline runs
+Failed (deliberately broken test): ![failed](docs/ci-failed.png)
+Passed (after fix): ![passed](docs/ci-passed.png)
