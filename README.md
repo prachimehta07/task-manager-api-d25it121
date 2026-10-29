@@ -121,3 +121,10 @@ Open http://localhost:5173
 ### Pipeline runs
 Failed (deliberately broken test): ![failed](docs/ci-failed.png)
 Passed (after fix): ![passed](docs/ci-passed.png)
+
+## Practical 13 — AI Integration (Gemini)
+
+- `POST /ai/subtasks` (JWT-protected) sends only the task title to the Gemini API and returns 3–6 suggested subtasks
+- API key and model name live in `.env` (`GEMINI_API_KEY`, `GEMINI_MODEL`); the key is never exposed to the frontend
+- 10-second timeout; any failure returns `{ subtasks: [], fallback: true }` so the app keeps working
+- Rate limit: one generation per user per title per minute (429 otherwise)
